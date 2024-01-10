@@ -3,15 +3,16 @@ import morgan from 'morgan';
 import path from 'path';
 import cors from 'cors';
 import busboy from 'connect-busboy';
-
+require('dotenv').config();
 
 import indexRoutes from './routes/index'
+
 
 // Initializations
 const app: Application = express();
 
 // Settings
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || 3000);
 
 // Middlewares
 app.use(morgan('dev'));

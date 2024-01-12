@@ -44,14 +44,14 @@ export async function getPhoto(req: Request, res: Response): Promise<Response> {
 
         // Verificar si el ID proporcionado es válido antes de realizar la consulta
         if (!isValidObjectId(id)) {
-            return res.status(400).json({ message: 'ID de foto no válido' });
+            return res.status(400).json({ message: 'ID no válido' });
         }
 
         const photo = await Photo.findById(id);
 
         // Verificar si la foto existe
         if (!photo) {
-            return res.status(404).json({ message: 'Foto no encontrada' });
+            return res.status(404).json({ message: 'Registro no encontrado' });
         }
 
         return res.json(photo);

@@ -36,10 +36,23 @@ async function createPhoto(req, res) {
 exports.createPhoto = createPhoto;
 ;
 async function getPhoto(req, res) {
-    //usando destructuracion o const id = req.params.id;
-    const { id } = req.params;
-    const photo = await Photo_1.default.findById(id);
-    return res.json(photo);
+    try {
+        const { id } = req.params;
+        // Verificar si el ID proporcionado es válido antes de realizar la consulta
+        if (!isValidObjectId(id)) {
+            return res.status(400).json({ message: 'ID no válido' });
+        }
+        const photo = await Photo_1.default.findById(id);
+        // Verificar si la foto existe
+        if (!photo) {
+            return res.status(404).json({ message: 'Registro no encontrado' });
+        }
+        return res.json(photo);
+    }
+    catch (error) {
+        console.error('Error al obtener la foto:', error);
+        return res.status(500).json({ message: 'Error interno del servidor' });
+    }
 }
 exports.getPhoto = getPhoto;
 async function deletePhoto(req, res) {
@@ -69,3 +82,7 @@ async function updatePhoto(req, res) {
     });
 }
 exports.updatePhoto = updatePhoto;
+function isValidObjectId(id) {
+    const ObjectId = require('mongoose').Types.ObjectId;
+    return ObjectId.isValid(id);
+}

@@ -7,7 +7,11 @@ const schema = new Schema({
     nombre: String,
     coste: Number,
     force: Number,
-    habilidades: String
+    habilidades: String,
+    frecuencia:String,
+    edicion:String,
+
+
 });
 
 export interface IPhoto extends Document {
@@ -17,7 +21,9 @@ export interface IPhoto extends Document {
     nombre: string,
     coste: Number,
     force: Number,
-    habilidades: string    
+    habilidades: string,
+    frecuencia:string,
+    edicion:string,
 }
 
 export default model<IPhoto>('Photo', schema);

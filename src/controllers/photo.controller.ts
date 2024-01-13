@@ -17,7 +17,9 @@ export async function createPhoto(req: Request, res: Response): Promise<Response
         nombre,
         coste,
         force,
-        habilidades
+        habilidades,
+        frecuencia,
+        edicion
     
     } = req.body;
     const newPhoto = { 
@@ -27,7 +29,9 @@ export async function createPhoto(req: Request, res: Response): Promise<Response
         nombre,
         coste,
         force,
-        habilidades
+        habilidades,
+        frecuencia,
+        edicion
 
     };
     const photo = new Photo(newPhoto);
@@ -78,7 +82,9 @@ export async function updatePhoto(req: Request, res: Response): Promise<Response
         nombre,
         coste,
         force,
-        habilidades
+        habilidades,
+        frecuencia,
+        edicion,
     } = req.body;
     const updatedPhoto = await Photo.findByIdAndUpdate(id, {
         tipo,
@@ -86,7 +92,9 @@ export async function updatePhoto(req: Request, res: Response): Promise<Response
         nombre,
         coste,
         force,
-        habilidades
+        habilidades,
+        frecuencia,
+        edicion
     });
     return res.json({
         message: 'Successfully updated',

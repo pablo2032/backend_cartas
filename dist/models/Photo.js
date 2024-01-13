@@ -8,6 +8,8 @@ const schema = new mongoose_1.Schema({
     nombre: String,
     coste: Number,
     force: Number,
-    habilidades: String
+    habilidades: String,
+    frecuencia: String,
+    edicion: String,
 });
 exports.default = (0, mongoose_1.model)('Photo', schema);

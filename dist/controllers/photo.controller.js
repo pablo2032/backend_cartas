@@ -16,7 +16,7 @@ exports.getPhotos = getPhotos;
 ;
 async function createPhoto(req, res) {
     var _a;
-    const { tipo, raza, nombre, coste, force, habilidades } = req.body;
+    const { tipo, raza, nombre, coste, force, habilidades, frecuencia, edicion } = req.body;
     const newPhoto = {
         tipo,
         raza,
@@ -24,7 +24,9 @@ async function createPhoto(req, res) {
         nombre,
         coste,
         force,
-        habilidades
+        habilidades,
+        frecuencia,
+        edicion
     };
     const photo = new Photo_1.default(newPhoto);
     await photo.save();
@@ -67,14 +69,16 @@ exports.deletePhoto = deletePhoto;
 ;
 async function updatePhoto(req, res) {
     const { id } = req.params;
-    const { tipo, raza, nombre, coste, force, habilidades } = req.body;
+    const { tipo, raza, nombre, coste, force, habilidades, frecuencia, edicion, } = req.body;
     const updatedPhoto = await Photo_1.default.findByIdAndUpdate(id, {
         tipo,
         raza,
         nombre,
         coste,
         force,
-        habilidades
+        habilidades,
+        frecuencia,
+        edicion
     });
     return res.json({
         message: 'Successfully updated',

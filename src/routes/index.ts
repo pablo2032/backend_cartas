@@ -1,6 +1,8 @@
 import { Router } from 'express'
 const router = Router();
 
+import { login } from '../controllers/auth.controller'; //
+
 import upload from '../libs/multer'
 import { 
     getPhotos, 
@@ -10,10 +12,17 @@ import {
     updatePhoto 
 } from '../controllers/photo.controller'
 
+import { authenticate } from '../middlewares/auth.middleware'; 
+
 // middleware
  //router.use(upload.single('image'));
 
 // routes
+
+router.post('/auth/login', login);
+
+router.use('api/photos', authenticate);
+
 router.route('/photos')
     .get(getPhotos)
     .post(upload.single('image'), createPhoto);
